@@ -1,8 +1,10 @@
 <div class="overlay" data-burger="overlay"></div>
-<header class="header">
+<header
+    class="header header--show header--fixed header--background-transparent"
+>
     <h1 class="hidden">Coca - Digital Marketing Website. {=$title} page</h1>
     <div class="container header__container">
-        <a href="/coca/" class="header__logo" aria-label="Home page">
+        <a class="header__logo" href="/coca/" aria-label="Home page">
             <svg
                 width="140"
                 height="66"
@@ -37,45 +39,56 @@
             <nav class="nav header__nav">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="/coca/" class="nav__link text-p-default"
+                        <a class="nav__link text-p-default" href="/coca/"
                             >Home</a
                         >
                     </li>
                     <li class="nav__item">
                         <a
-                            href="/coca/about.html"
                             class="nav__link text-p-default"
+                            href="/coca/about.html"
                             >About</a
                         >
                     </li>
                     <li class="nav__item">
                         <a
-                            href="/coca/blog.html"
                             class="nav__link text-p-default"
-                            >Blog</a
-                        >
-                    </li>
-                    <li class="nav__item">
-                        <a
                             href="/coca/pricing.html"
-                            class="nav__link text-p-default"
                             >Pricing</a
                         >
                     </li>
                     <li class="nav__item">
                         <a
-                            href="/coca/contact.html"
                             class="nav__link text-p-default"
+                            href="/coca/contact.html"
                             >Contact</a
+                        >
+                    </li>
+                    <li class="nav__item">
+                        <a
+                            class="nav__link text-p-default"
+                            href="/coca/overview.html"
+                            >Overview</a
+                        >
+                    </li>
+                    <li class="nav__item">
+                        <a
+                            class="nav__link text-p-default"
+                            href="/coca/blog.html"
+                            >Blog</a
                         >
                     </li>
                 </ul>
             </nav>
             <label class="header__switcher">
-                <span class="header__switcher-text text-p-default">Dark</span>
+                <span
+                    class="header__switcher-text text-p-default"
+                    data-theme-text
+                    >Light</span
+                >
                 <input
-                    type="checkbox"
                     class="header__switcher-checkbox"
+                    type="checkbox"
                     data-theme-switcher
                 />
             </label>
