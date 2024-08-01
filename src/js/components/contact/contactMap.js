@@ -1,4 +1,4 @@
-import mapMarkerIcon from './src/assets/icons/yandex-map-marker-icon.svg';
+import mapMarkerIcon from '/src/assets/icons/yandex-map-marker-icon.svg';
 export const useMap = () => {
     const themeTarget = document.querySelector('[data-theme]');
     const theme = localStorage.getItem('theme') || 'light';
