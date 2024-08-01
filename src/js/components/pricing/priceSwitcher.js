@@ -1,44 +1,65 @@
 export const usePriceSwitcher = () => {
-    const switcher = document.querySelector('[data-price="swticher"]');
-    const starterPrice = document.querySelector('[data-price="starter"]');
-    const popularPrice = document.querySelector('[data-price="popular"]');
-    const entriesPrice = document.querySelector('[data-price="enterprise"]');
+  const switcher = document.querySelector('[data-price="switcher"]');
+  const starterPrice = document.querySelector('[data-price="starter"]');
+  const popularPrice = document.querySelector('[data-price="popular"]');
+  const enterprisePrice = document.querySelector('[data-price="enterprise"]');
 
-    const priceList = {
-        starter: {
-            default: 120,
-            witchSale: 100,
-        },
-        popular: {
-            default: 1680,
-            witchSale: 1400,
-        },
-        enterprise: {
-            default: 2520,
-            wtichSale: 2100,
-        },
-    };
+  const numStarterPrice = starterPrice.textContent.replace(/[^0-9.]/g, '');
+  const numPopularPrice = popularPrice.textContent.replace(/[^0-9.]/g, '');
+  const numEnterprisePrice = enterprisePrice.textContent.replace(/[^0-9.]/g, '');
 
-    const setPricesWitchSale = () => {
-        starterPrice.textContent = priceList.starter.witchSale;
-        popularPrice.textContent = priceList.popular.witchSale;
-        entriesPrice.textContent = priceList.enterprise.wtichSale;
-    };
+  const calculateDiscountedPrice = (price) => {
+    const noneDiscountedPrice = price * 1.2 / 30;
+    return Math.trunc(noneDiscountedPrice);
+  };
 
-    const setDefaultPrices = () => {
-        starterPrice.textContent = priceList.starter.default;
-        popularPrice.textContent = priceList.popular.default;
-        entriesPrice.textContent = priceList.enterprise.default;
-    };
+  const starterNoneDiscountedPrice = calculateDiscountedPrice(numStarterPrice);
+  const popularNoneDiscountedPrice = calculateDiscountedPrice(numPopularPrice);
+  const enterpriseNoneDiscountedPrice = calculateDiscountedPrice(numEnterprisePrice);
 
-    switcher.checked = true;
-    setPricesWitchSale();
+  const priceList = {
+    starter: {
+      default: '$' + starterNoneDiscountedPrice,
+      withSale: '$' + numStarterPrice,
+    },
+    popular: {
+      default: '$' + popularNoneDiscountedPrice,
+      withSale: '$' + numPopularPrice,
+    },
+    enterprise: {
+      default: '$' + enterpriseNoneDiscountedPrice,
+      withSale: '$' + numEnterprisePrice,
+    },
+  };
 
-    switcher.addEventListener('click', () => {
-        if (switcher.checked) {
-            setPricesWitchSale();
-        } else {
-            setDefaultPrices();
-        }
-    });
+  const setPricesWithSale = () => {
+    starterPrice.textContent = priceList.starter.withSale;
+    popularPrice.textContent = priceList.popular.withSale;
+    enterprisePrice.textContent = priceList.enterprise.withSale;
+  };
+
+  const setDefaultPrices = () => {
+    starterPrice.textContent = priceList.starter.default;
+    popularPrice.textContent = priceList.popular.default;
+    enterprisePrice.textContent = priceList.enterprise.default;
+  };
+
+  switcher.checked = true;
+  setPricesWithSale();
+
+  const timeInterval = document.querySelectorAll('[data-price="mo"]');
+
+  switcher.addEventListener('click', () => {
+    if (switcher.checked) {
+      setPricesWithSale();
+      timeInterval.forEach((e) => {
+        e.textContent = '/mo';
+      });
+    } else {
+      setDefaultPrices();
+      timeInterval.forEach((e) => {
+        e.textContent = '/day';
+      });
+    }
+  });
 };
