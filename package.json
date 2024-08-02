@@ -27,7 +27,9 @@
         "vite-plugin-minify": "^1.5.2"
     },
     "dependencies": {
+        "@types/yandex-maps": "^2.1.36",
         "intl-tel-input": "^23.8.0",
-        "swiper": "^11.1.9"
+        "swiper": "^11.1.9",
+        "ymaps": "^0.2.1"
     }
 }
